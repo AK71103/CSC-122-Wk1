@@ -1,3 +1,8 @@
 //Alexander Kazantzis
 //8-27-26
 //HI==hi
+
+#include <iostream>
+#include <string>
+#include <cctype>
+#include <cassert>
