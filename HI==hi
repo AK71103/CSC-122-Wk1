@@ -4,5 +4,60 @@
 
 #include <iostream>
 #include <string>
-#include <cctype>
+#include <limits>
 #include <cassert>
+
+//function to get string input from user
+std::string GetStrInput(const std::string& prompt) {
+    std::string input;
+    std::cout << prompt;
+    std::getline(std::cin, input);
+    return input;
+}
+int StringCompareIgnCase(const std::string& str1, const std::string& str2) {
+    // Compare the two strings ignoring case
+    size_t len1 = str1.length();
+    size_t len2 = str2.length();
+    size_t minLen = std::min(len1, len2);
+
+    for (size_t i = 0; i < minLen; ++i) {
+        char c1 = std::tolower(str1[i]);
+        char c2 = std::tolower(str2[i]);
+        if (c1 < c2) return -1;
+        if (c1 > c2) return 1;
+    }
+
+    // If all characters are equal up to the length of the shorter string
+    if (len1 < len2) return -1;
+    if (len1 > len2) return 1;
+    return 0; // Strings are equal
+}
+int main() {
+    // Get two strings from the user
+    std::string str1 = GetStrInput("Enter a string: ");
+    std::string str2 = GetStrInput("Enter a second string: ");
+
+    // Compare the two strings using StringCompareIgnCase function
+
+    if (StringCompareIgnCase(str1, str2) == 0) {
+        std::cout << "The strings are equal (ignoring case)." << std::endl;
+        return 0;
+    } else if (StringCompareIgnCase(str1, str2) < 0) {
+        std::cout << "The first string is lexicographically smaller (ignoring case)." << std::endl;
+        return -1;
+    } else {
+        std::cout << "The first string is lexicographically larger (ignoring case)." << std::endl;
+        return 1;
+    }
+    // Test cases
+    assert(StringCompareIgnCase("Hello", "hello") == 0); 
+    assert(StringCompareIgnCase("abc", "ABC") == 0);
+    assert(StringCompareIgnCase("abc", "abd") < 0);
+    assert(StringCompareIgnCase("abd", "abc") > 0);
+    assert(StringCompareIgnCase("abc", "abcd") < 0);
+    assert(StringCompareIgnCase("abcd", "abc") > 0);
+    assert(StringCompareIgnCase("abc", "abC") == 0);
+    assert(StringCompareIgnCase("abc", "aBc") == 0);
+    std::cout << "All tests passed successfully!" << std::endl;
+    return 0;
+}
