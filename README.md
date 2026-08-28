@@ -1,21 +1,20 @@
 # CSC-122-Wk1
-Password Validation assignment
-
+<s>Password Validation assignment</s>
+Hello==hello assignment
 ## Problem Statement
-Write a function that validates the password field of a registration form. The validation function should take a password as an input and return a message describing the status of the password. Feel free to include other defaulted arguments to the function if you feel it necessary.
+Your goal for this lab is to implement a function that compares two strings (lexicographically). 
+However, it should be case insensitive. That is, the letter 'A' is considered equal to the letter 'a'. 
+Remember that a lexicographic ordering is a generalization of an alphabetical ordering, such that things are ordered based on comparing their individual elements,-
+-one at a time until a non-match is found. 
+Remember that a string may have non-alphabetical characters, you should support those as well. 
+For this, remember that characters have an ordering given to them by the ASCII standard, and this ordering is what is used by the built-in comparison operators.
 
-## Acceptance Criteria
+Given an input of two strings, your function should:
+-Return a negative number if string1 is less than string2
+-Return zero if the strings are equivalent
+-Return a positive number if string1 is greater than string2
 
-Your validation function should enforce the following password requirements:
+If one string is shorter than the other, but all the characters it has match, it should be considered less than the longer string. E.g. "app" < "apple"
+This mirrors the return type of the (case sensitive) standard library function, strcmp. You may not use this function, or any similar variants.
 
-1, The password must be at least 8 characters long. If not, the function should return the message: “The password must be at least 8 characters”.
-2, The password must contain at least 2 numbers. If not, the function should return the message: “The password must contain at least 2 numbers”.
-3, The password must contain at least one capital letter. If not, the function should return the message: “The password must contain at least 1 capital letter”
-4, The password must contain at least one special character. If not, the function should return the message: “The password must contain at least 1 special character”.
-Use assert statements to test your code.
-
-## Dev Notes
-
-In this activity, we will be using a strategy called “ping pong” pair programming. In this setup, two people pair with each other while sharing a computer. Partner A writes an assert statement based on the acceptance criteria outlined above. Then, partner B makes that assert statement pass with the minimal amount of code possible. Afterwards, the partners switch (partner B writes a test and partner A makes it pass). Repeat this process until the password validator function has been implemented.
-
-Think about how you might break this problem down into tiny pieces so that you can solve it effectively!
+Use assert() to write unit tests for your function.
